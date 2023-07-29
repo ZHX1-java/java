@@ -1,0 +1,23 @@
+public class HelloWorld{
+	//main方法，表示程序的主入口
+	public static void main(String[]args){
+		//输入语句（打印语句）
+		System.out.println("Helloworld");
+	}
+}
+
+public class HelloWorld{
+	//main方法，表示程序的主入口
+	public static void main(String[]args){
+		//输入语句（打印语句）
+		System.out.println("Helloworld");
+	}
+}
+
+
+public class ValueDemo2{
+	public static void main(String[] args){
+		System.out.println("name" + "\t" + "age");
+		System.out.println("tom" + "\t" + "23");
+	}
+}
