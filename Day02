@@ -1,0 +1,170 @@
+package Test;
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("HelloWorld");
+    }
+}
+
+
+
+package Test;
+
+import java.util.Scanner;
+
+public class Test1 {
+    public static void main(String[] args) {
+
+        int a = 100;
+        System.out.println("班级有" + a + "个学员");
+        double b = 55.55;
+        System.out.println(b);
+        long c = 4600000000L;
+        System.out.println(c);
+        System.out.println("请输入一个整数：");
+        System.out.println("请输入二个整数：");
+        int d = new Scanner(System.in).nextInt();
+        int e = new Scanner(System.in).nextInt();
+        if (d % e == 0)
+            System.out.println(d+"可以被" + e + "整除");
+        else System.out.println(d+"不可以被" + e + "整除");
+    }
+}
+
+
+
+package Test;
+
+public class Test2 {
+    public static void main(String[] args) {
+        System.out.println("********************************");
+        String name = "张三";
+        char gender = '男';
+        int age = 18;
+        String location = "xx省xx市";
+        double money = 55.55;
+        System.out.println("我的姓名是：" + name);
+        System.out.println("我的性别是：" + gender);
+        System.out.println("我的年龄是：" + age);
+        System.out.println("我的地址是：" + location);
+        System.out.println("我的饭卡余额是：" + money + '元');
+        System.out.println("********************************");
+
+    }
+}
+
+
+import java.util.Scanner;
+
+public class ScannerDemo1{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("请输入第一个整数：");
+		int a = sc.nextInt();
+		System.out.println("请输入第二个整数：");
+		int b = sc.nextInt();
+		System.out.println("第一个整数为："+a);
+		System.out.println("第二个整数为："+b);
+		System.out.println(a+b);
+	}
+}
+
+public class VariableDemo1{
+	public static void main(String[] args){
+		int a = 10;
+		System.out.println(a);
+	}
+}
+
+
+public class VariableDemo2{
+	public static void main(String[] args){
+		int a = 10;
+		int b = 20;
+		System.out.println(a + b);
+		//修改变量记录的值
+		a = 50;
+		System.out.println(a);
+		int c = 13, d = 123, e = 412;
+		System.out.println(c);
+		System.out.println(d);
+		System.out.println(e);
+		
+	}
+}
+
+
+
+
+public class VariableDemo3{
+	public static void main(String[] args){
+		//byte  -128~127
+		byte b = 10;
+		System.out.println(b);
+		//short
+		short s = 20;
+		System.out.println(s);
+		//int
+		int i = 30;
+		System.out.println(i);
+		//long
+		//如果定义long类型的变量
+		//在数据值后面加一个L作为后缀
+		//L可以是大写，也可也是小写
+		//建议：L大写
+		long l= 9999999999L;
+		System.out.println(l);
+		
+		//float
+		//注意：定义float类型变量
+		//在数据值后面加一个F作为后缀
+		//F可以是大写，也可也是小写
+		//建议：F大写
+		float f = 20.17F;
+		System.out.println(f);
+		//double
+		double d = 20.4123;
+		System.out.println(d);
+		
+		
+		//char
+		char c = '中';
+		System.out.println(c);
+		
+		//boolean
+		//true/false
+		boolean o = true;
+		System.out.println(o);
+	}
+}
+
+
+
+public class VariableTest1{
+	public static void main(String[] args){
+		//一开始没有乘客
+		int count = 0;
+		//第一站：上去一位乘客
+		count = count + 1;
+		//第二站：上去两个，下去一个
+		count = count + 2 - 1;
+		//第三站：上去两个，下去一个
+		count = count + 2 - 1;
+		//第四站：下去一个
+		count = count - 1;
+		//第五站：上去一个
+		count = count + 1;
+		//请问：到了终点站，车上一共几个乘客
+		System.out.println("终点车上一共" + count +"个乘客");
+	}
+}
+
+
+public class VariableTest2{
+	public static void main(String[] args){
+		String title ="HUAWEI";
+		double grade = 5299.00;
+		System.out.println(title);
+		System.out.println(grade);
+	}
+}
