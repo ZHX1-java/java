@@ -1,0 +1,386 @@
+package Demo;
+
+public class MethodDemo1 {
+    public static void main(String[] args) {
+        //目标：掌握最简单的方法定义和调用的格式
+        playgame();
+        playgame();
+    }
+    //定义一个方法
+    public static void playgame() {
+        System.out.println("选人物");
+        System.out.println("准备开局");
+        System.out.println("对线");
+        System.out.println("崩盘");
+        System.out.println("骂队友");
+        System.out.println("送人头");
+        System.out.println("GG");
+    }
+}
+
+
+
+
+package Demo;
+
+public class MethodDemo2 {
+    public static void main(String[] args) {
+        girlInfo();
+
+    }
+    public static void girlInfo(){
+        System.out.println("小灰灰");
+        System.out.println("萌妹子");
+        System.out.println("18岁");
+    }
+}
+
+
+
+
+package Demo;
+
+import java.util.Scanner;
+
+public class MethodDemo3 {
+    public static void main(String[] args) {
+        int num1 = new Scanner(System.in).nextInt();
+        int num2 = new Scanner(System.in).nextInt();
+        Add(num1,num2);
+
+
+    }
+
+    public static void Add(int a , int b) {
+
+        int z = a + b;
+
+        System.out.println(z);
+    }
+
+
+}
+
+
+
+
+package Demo;
+
+import java.util.Scanner;
+
+public class MethodDemo4 {
+    public static void main(String[] args) {
+        int a = new Scanner(System.in).nextInt();
+        int b = new Scanner(System.in).nextInt();
+        //getsum(15,20);
+        getsum(a,b);
+        getsum(a,b+2);
+        getsum(10,b+2);
+    }
+
+    public static void getsum(int num1,int num2) {
+        int result = num1 + num2;
+        System.out.println(result);
+    }
+
+
+}
+
+
+
+
+package Demo;
+
+import java.util.Scanner;
+
+public class MethodDemo5 {
+    public static void main(String[] args) {
+        /*getSum(30.5,23.4,43.9);//直接调用，无法打印
+        double sum = getSum(30.5,23.4,43.9);//赋值调用
+        System.out.println(sum);
+        System.out.println(getSum(30.5,23.4,43.9));//输出调用
+        */
+        //计算一年的营业额
+        /*double sum1 = getSum(13.4, 43.4, 294.4);
+        double sum2 = getSum(123.8, 44.4, 42.2);
+        double sum3 = getSum(13.45, 433.4, 874.43);
+        double sum4 = getSum(143.2, 43.5, 546.12);
+        double sum = sum1 + sum2 + sum3 + sum4;
+        System.out.println("全年总计为:" + sum+"w");*/
+        int count = 0;
+        double temp = 0;
+        for (int i = 0; i < 4; i++) {
+            double a = new Scanner(System.in).nextDouble();
+            double b = new Scanner(System.in).nextDouble();
+            double c = new Scanner(System.in).nextDouble();
+            double all = getSum(a,b,c);
+            temp = temp + all;
+            count ++;
+            System.out.println("第"+ count+"季度总计"+all);
+        }System.out.println("全年总营业额为:"+ temp);
+
+    }
+
+    public static double getSum(double num1, double num2, double num3) {
+        double result = num1 + num2 + num3;
+        return result;
+        //return num1 + num2 + num3;
+    }
+
+}
+
+
+
+
+package ClassTest;
+
+import java.util.Scanner;
+
+public class Test01 {
+        public static void main(String[] args) {
+            System.out.print("请输入长:>");
+            double a = new Scanner(System.in ).nextDouble();
+            System.out.print("请输入宽:>");
+            double b = new Scanner(System.in ).nextDouble();
+            zhouChang(a,b);
+            double d = Math.PI;
+            zhouChang(a,d);
+        }
+        public static void zhouChang(double length,double width){
+            double c = 2 * (length + width);
+            System.out.println("周长为："+ c);
+        }
+}
+
+
+
+
+package ClassTest;
+
+import java.util.Scanner;
+
+public class Test02 {
+    public static void main(String[] args) {
+        //需求：定义一个方法，求圆的面积，将结果在方法中进行打印
+        System.out.print("请输入圆的半径:>");
+        double r = new Scanner(System.in).nextDouble();
+        area(r);
+    }
+    public static void area(double r){
+        double result = r * r * Math.PI;
+        System.out.println("圆的面积为："+ result);
+    }
+}
+
+
+
+
+package ClassTest;
+
+import java.util.Scanner;
+
+public class Test03 {
+    public static void main(String[] args) {
+        double area = 0;
+        double area1 = 0;
+        double area2 = 0;
+        int count = 0;
+        for (int i = 0; i < 2; i++) {
+            System.out.print("请输入长:>");
+            double length = new Scanner(System.in).nextDouble();
+            System.out.print("请输入宽:>");
+            double width = new Scanner(System.in).nextDouble();
+            area = getArea(length, width);
+            count ++;
+            System.out.println("第"+count+"个面积为："+ area);
+
+
+        }
+        if (area1 > area2) {
+            System.out.println("第一个长方形面积大");
+        } else {
+            System.out.println("第二个长方形面积大");
+        }
+
+
+    }
+
+    public static double getArea(double length, double width) {
+        double area = length * width;
+        return area;
+    }
+}
+
+
+
+
+package ClassTest;
+
+import java.util.concurrent.ConcurrentMap;
+
+public class Test04 {
+    public static void main(String[] args) {
+        compare(1, 8);//int
+        compare((byte) 10, (byte) 20);//byte  -128~127
+        byte a = 10;
+        byte b = 127;
+        compare(a,b);//byte
+    }
+
+    public static void compare(long a, long b) {
+        if (a > b) System.out.println(a);
+        else if (a < b) System.out.println(b);
+        else System.out.println(a = b);
+        System.out.println("long");
+    }
+
+    public static void compare(int a, int b) {
+        if (a > b) System.out.println(a);
+        else if (a < b) System.out.println(b);
+        else System.out.println(a = b);
+        System.out.println("int");
+    }
+
+    public static void compare(short a, short b) {
+        if (a > b) System.out.println(a);
+        else if (a < b) System.out.println(b);
+        else System.out.println(a = b);
+        System.out.println("short");
+    }
+
+
+
+}
+
+
+
+
+package ClassTest;
+
+public class Test05 {
+    public static void main(String[] args) {
+        //设计一个函数用于遍历数组，
+        //要求遍历的结果打印在一行上 如 11，22，33，44，55
+        int arr[] = {11, 22, 33, 44, 55};
+        printArr(arr);
+        System.out.println();
+        char arr1[] = {'我', '爱','中','国'};
+        printArr(arr1);
+    }
+
+    public static void printArr(int arr[]) {
+        System.out.print("[");
+        for (int i = 0; i < arr.length; i++) {
+            if (i < arr.length - 1)
+                System.out.print(arr[i] + ", ");
+            else if (i == arr.length - 1)
+                System.out.print(arr[arr.length - 1]);
+        }
+        System.out.print("]");
+    }
+    public static void printArr(char arr[]) {
+        System.out.print("[");
+        for (int i = 0; i < arr.length; i++) {
+            if (i < arr.length - 1)
+                System.out.print(arr[i] + ", ");
+            else if (i == arr.length - 1)
+                System.out.print(arr[arr.length - 1]);
+        }
+        System.out.print("]");
+
+    }
+}
+
+
+
+
+package ClassTest;
+
+public class Test06 {
+    public static void main(String[] args) {
+        //设计一个方法，
+        //求数组最大值，并将最大值返回
+        int arr[] = {-45, -156, -213, -54, -6, -48};
+        getMax(arr);
+    }
+
+    public static void getMax(int arr[]) {
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        System.out.println("最大值为:" + max);
+    }
+}
+
+
+
+
+package ClassTest;
+
+import java.lang.annotation.Retention;
+import java.util.Scanner;
+
+public class Test07 {
+    public static void main(String[] args) {
+        //定义一个方法
+        //判断数组中的某一个数是否存在，将结果返回调用处
+        int arr[] = {423, 534, 123, 73, 4, 2};
+        int a = new Scanner(System.in).nextInt();
+        getNum(arr, a);
+        //System.out.println(getNum(arr,a));  boolean类型
+
+    }
+
+    public static void getNum(int arr[], int num1) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == num1) {
+                System.out.println("找到了，你要找的数字为:"+ num1);
+                return;
+            }
+        }
+        System.out.println("没找到");
+        return;
+    }
+    /*public static boolean getNum(int arr[], long num2) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == num2) {
+                return true;
+            }
+        }
+        return false;
+    }*/
+
+}
+
+
+
+
+package ClassTest;
+
+public class Test08 {
+    public static void main(String[] args) {
+        //要求：定义一个方法copyOfRange(int arr[],int from,int to)
+        //功能：将数组arr中的索引from（包含from）开始。
+        //      到索引to结束（不包含to）的元素赋值到新数组中，将新数组返回
+        int arr[] = {1,2,3,4,5,6,7,8,9};
+        int newArr[] = copyOfRange(arr,3,7);
+        for (int i = 0; i < newArr.length; i++) {
+            System.out.print(newArr[i] + " ");
+        }
+    }
+    public static int[] copyOfRange(int arr[],int from,int to){  //from --索引开始   to --索引结束（包含from不包含to
+        //定义数组
+        int copyOfRange[] = new int [to - from];
+        int index = 0;
+        for (int i = from; i < to; i++) {
+            copyOfRange[index] = arr[i];
+            index++;
+        }
+        return copyOfRange;
+    }
+
+}
+
