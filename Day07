@@ -1,0 +1,799 @@
+package TwoDimensionDemo;
+
+public class TwoDimensionDemo1 {
+    public static void main(String[] args) {
+/*
+        二维数组静态初始化格式:
+                            数据类型[][]数组名= new 数据类型[][]{{元素1,元素2},{元素1，元素2}};
+        简化格式:
+                            数据类型[][]数组名= {{元素1,元素2}，{元素1，元素2}};
+        元素访问:
+                            数组名[索引][索引];
+        二维数组遍历:
+                            先得到一维数组，再遍历一维数组获取元素
+         */
+        //1.二维数组的静态初始化格式
+        int arr1[][] = new int[][]{{11, 22}, {33, 44}, {1, 2}, {3}};
+        int arr2[][] = {{11, 22}, {33, 44}, {1, 2}, {3}};
+        //建议这样写，把每一个一维数组，单独写成一行
+        int arr3[][] = {
+                {11, 22},
+                {33, 44, 55, 66},
+        };
+        //2.获取元素
+        //System.out.println(arr1[0]);//表示获取二维数组中的第一个一维数组的地址值
+
+        //arr3[0]:二维数组中的第一个一维数组
+        //arr3[0][0]:获取第一个一维数组中0索引的元素
+        //System.out.println(arr3[0][0]);//11
+
+
+        //3.二维数组的遍历
+        //外循环：遍历二维数组，得到里面的每一个一维数组
+        for (int i = 0; i < arr3.length; i++) {
+            //i:表示二维数组中的每一个索引
+            //arr3[i]：表示二维数组中的每一个元素（一维数组 ）
+            //内循环：遍历一维数组，得到里面的每一个元素
+            for (int j = 0; j < arr3[i].length; j++) {
+                //j：表示一维数组中的每一个索引
+                //arr3[j]：表示一维数组中的每一个元素
+                System.out.print(arr3[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+
+
+package TwoDimensionDemo;
+
+public class TwoDimensionDemo2 {
+    public static void main(String[] args) {
+        /*
+            二维数组的动态初始化格式
+                数据类型 [][]数组名 = new 数据类型[m][n];
+                m表示这个二维数组有多少个一维数组
+                n表示每一个一维数组中可以存放多少个元素
+         */
+        //1.利用动态初始化创建二维数组
+
+        int arr1[][] = new int[3][5];
+        //3：表示二维数组的长度为3，可以存放三个一维数组
+        //5：表示每一个一维数组的长度为5，可以存放五个元素
+
+        arr1[0][0] = 10;
+        for (int i = 0; i < arr1.length; i++) {
+            for (int j = 0; j < arr1[i].length; j++) {
+                System.out.print(arr1[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+    }
+}
+
+
+
+
+package TwoDimensionDemo;
+
+public class TwoDimensionDemo3 {
+    public static void main(String[] args) {
+        /*
+            某商场每个季度的营业额如下：（万元）
+            第一季度：22,66,44
+            第二季度：77,33,88
+            第三季度：25,45,65
+            第四季度：11,66,99
+            要求计算每个季度的总营业和全年总营业额
+         */
+        int[][] arr = {
+                {22, 66, 44},
+                {77, 33, 88},
+                {25, 45, 65},
+                {11, 66, 99}
+        };
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int everySum = 0;
+            everySum = getEverySum(arr[i]);
+            sum = sum + everySum;
+            System.out.println("第" + (i + 1) + "季度营业额为：" + everySum);
+        }
+        System.out.println("全年总营业额为：" + sum);
+    }
+
+    //定义一个方法计算每个季度的总额
+    public static int getEverySum(int arr[]) {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum = sum + arr[i];
+        }
+        return sum;
+    }
+}
+
+
+
+
+package Test;
+
+public class Day07 {
+    public static void main(String[] args) {
+        int arr[] = {1,9,8,3};
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i] +5;
+            arr[i] = arr[i] % 10;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        int newArr[] = new int[arr.length];
+        for (int i = 0,j = arr.length - 1; i < arr.length && j >= 0; i++,j--) {
+            newArr[i] = arr[j];
+        }
+        for (int i = 0; i < newArr.length; i++) {
+            System.out.print(newArr[i] + " ");
+        }
+    }
+}
+
+package Test;
+
+import java.util.Scanner;
+
+public class Test01 {
+    public static void main(String[] args) {
+        /* 机票价格按照淡季 旺季、头等舱和经济舱收费
+        输入机票原价、月份和头等舱或经济舱。
+        按照如下规则计算机票价格：
+        旺季（5-10月）头等舱9折，经济舱8.5折，
+        淡季（11月到来年4月）头等舱7折，经济舱6.5折。*/
+        System.out.print("请输入机票原价:>");
+        double price = new Scanner(System.in).nextDouble();
+        System.out.print("请输入月份:>");
+        int month = new Scanner(System.in).nextInt();
+        System.out.print("请输入舱次（0、头等舱，1、经济舱）:>");
+        int seat = new Scanner(System.in).nextInt();
+        //判断是否是旺季
+        //旺季
+        if (month >=5 && month <=10) {
+            System.out.println(getTicket(price,seat,0.9,0.85));
+        }
+        //淡季
+        else if ((month <=4 && month >0) || (month >=11 && month <=12)){
+            System.out.println(getTicket(price,seat,0.7,0.65));
+        }else System.out.println("键盘录入月份不合法");
+    }
+    public static double getTicket(double price,int seat,double t,double j){
+        double ticketPrice = 0;
+            if (seat == 0) {
+                //头等舱
+                ticketPrice = price * t;
+            } else if (seat == 1) {
+                //经济舱
+                ticketPrice = price * j;
+            } else {
+                System.out.println("没有这个选项!!!");
+            }
+            return ticketPrice;
+    }
+}
+
+
+
+
+package Test;
+
+public class Test02 {
+    public static void main(String[] args) {
+        //判断 101 ~ 200 之间有多少个素数，并打印所有素数
+        //质数又叫素数，指的是在大于1的自然数中，除了1和它本身以外不再有其他因数的自然数。
+        // 反之，则被称为合数。1和0既非素数，也非合数。质数有无穷个
+        int count = 0;  int i = 0,j = 0;
+        for (i = 101; i <= 200; i+=2) {//偶数不可能是素数，直接从奇数开始，每次自增2
+            //boolean flag = true;
+            for (j = 2; j < Math.sqrt(i); j++) {
+                if (i % j == 0){
+                    //flag = false;
+                    break;
+                }
+            }
+            if(j > Math.sqrt(i)){
+                System.out.println("当前数字" + i + "是质数");
+                count++;
+            }
+            /*if(flag) {
+                System.out.println("当前数字" + i + "是质数");
+                count++;
+            }*/
+        }
+        System.out.println("一共有" + count + "个质数");
+    }
+}
+
+
+
+
+package Test;
+
+import javax.imageio.event.IIOReadProgressListener;
+import java.util.Random;
+
+public class Test03 {
+    public static void main(String[] args) {
+        //需求：
+        //定义方法实现随机产生一个5位的验证码
+        //验证码格式：
+        //长度为5
+        //前四位是大写字母或者小写字母
+        //最后一位是数字
+        char chs[] = new char[52];
+        for (int i = 0; i < chs.length; i++) {
+           if (i <= 25){
+
+               chs[i] = (char)(97 + i);
+           }else {
+               chs[i] = (char) (65 + i - 26);
+           }
+        }
+        for (int i = 0; i < chs.length; i++) {
+            //System.out.print(chs[i] + " ");
+        }
+        //随机四次
+        String result = "";
+        Random ran = new Random();
+        int r = 0;
+        for (int i = 0; i < 4; i++) {
+            r = ran.nextInt(chs.length);
+            //System.out.print(chs[r] + " ");
+            result = result + chs[r];
+        }
+        //System.out.print(result);
+        int num = ran.nextInt(10);
+        result  += num;
+        System.out.println(result);
+    }
+}
+
+
+
+
+package Test;
+
+public class Test04 {
+    public static void main(String[] args) {
+        /* 需求：
+        把一个数组中的元素复制到另一个新数组中去。*/
+        int arr1[] = {1,2,3,4,5,6,7};
+        int arr2[] = new int[arr1.length];
+        for (int i = arr1.length-1,j = 0; i >= 0; i--,j++) {
+            arr2[j] = arr1[i];
+        }
+        for (int i = 0; i < arr2.length; i++) {
+            System.out.println(arr2[i]);
+        }
+    }
+}
+
+
+
+
+package Test;
+
+import java.util.Scanner;
+
+public class Test05 {
+    public static void main(String[] args) {
+        //在唱歌比赛中，有6名评委给选手打分，分数范围是[0 - 100]之间的整数。
+        // 选手的最后得分为：去掉最高分、最低分后的4个评委的平均分，
+        // 请完成上述过程并计算出选手的得分。
+        int arr[] = getScore();
+        /*for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }*/
+        int max = getMax(arr);
+        System.out.println("最高分为"+max);
+        int min = getMin(arr);
+        System.out.println("最低分为"+min);
+        double average = getAverage(arr,max,min);
+        System.out.println("平均分为" + average);
+
+
+    }
+    public static int [] getScore(){
+        //六个评委打分
+        int scores[] = new int[6];
+        for (int i = 0; i < scores.length;) {
+            System.out.print("第"+(i+1)+"位评委打分为:");
+            int score = new Scanner(System.in).nextInt();
+            scores[i] = score;
+            if(score >=0 && score<= 100){
+                scores[i] = score;
+                i++;
+            }else{
+                System.out.println("成绩超出了范围,继续录入，当前的i为：" + i);
+            }
+        }
+        return scores;
+    }
+    public static int getMax(int  scores[]){
+        //求最大值
+        int max = scores[0];
+        for (int i = 1; i < scores.length; i++) {
+            if (max <= scores[i]) max = scores[i];
+        }
+        return max;
+    }
+    public static int getMin(int scores[]){
+        //求最小值
+        int min = scores[0];
+        for (int i = 1; i < scores.length; i++) {
+            if (min >= scores[i]) min = scores[i];
+        }
+        return min;
+    }
+    public static double getAverage(int scores[],int max,int min){
+        //求平均分
+        int sum = 0;
+        double average = 0;
+        for (int i = 0; i < scores.length; i++) {
+            sum = sum + scores[i];
+        }
+        average = (sum -max -min) / (scores.length - 2);
+        return average;
+    }
+
+}
+
+
+
+
+package Test;
+
+import java.util.Scanner;
+
+public class Test06 {
+    public static void main(String[] args) {
+        /*
+        某系统的数字密码（大于0）。比如1983，采用加密方式进行传输，
+        规则如下：
+            每位数加上5
+            再对10求余，
+            最后将所有数字反转，
+            得到一串新数。
+*/
+        int num = new Scanner(System.in).nextInt();
+        int arr[] = getArr(num);
+        int newArr[] = secret(arr);
+        for (int i = 0; i < newArr.length; i++) {
+            System.out.print(newArr[i] + " ");
+        }
+    }
+    public static int[] getArr(int num){
+        int temp = num;
+        int count = 0;
+        //得到数字长度（数组长度）
+        do {
+            num = num / 10;
+            count++;
+        }while (num != 0);
+        //定义一个动态数组
+        int arr[] = new int[count];
+        //把数字每一位放到数组中
+        while(temp != 0){
+            int ge = temp %10;
+            temp = temp / 10;
+            arr[count-1] = ge;
+            count--;
+        }
+        return arr;
+    }
+    public static int[] secret(int arr[]){
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i] +5;
+            arr[i] = arr[i] % 10;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        int newArr[] = new int[arr.length];
+        for (int i = 0,j = arr.length - 1; i < arr.length && j >= 0; i++,j--) {
+            newArr[i] = arr[j];
+        }
+        return newArr;
+    }
+
+}
+
+
+
+
+package Test;
+
+import java.util.Scanner;
+
+public class Test07 {
+    public static void main(String[] args) {
+        //把Test06加密的密码解密
+        int num = new Scanner(System.in).nextInt();
+        int arr[] = getArr(num);
+        int newArr[] = secret(arr);
+        for (int i = 0; i < newArr.length; i++) {
+            System.out.print(newArr[i] + " ");
+        }
+    }
+    public static int[] getArr(int num){
+        int temp = num;
+
+
+        int count = 0;
+        //得到数字长度（数组长度）
+        do {
+            num = num / 10;
+            count++;
+        }while (num != 0);
+        //定义一个动态数组
+        int arr[] = new int[count];
+        //把数字每一位放到数组中
+        while(temp != 0){
+            int ge = temp %10;
+            temp = temp / 10;
+            arr[count-1] = ge;
+            count--;
+        }
+        return arr;
+    }
+    public static int[] secret(int arr[]) {
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i] +5;
+            arr[i] = arr[i] % 10;
+        }
+        int newArr[] = new int[arr.length];
+        for (int i = 0,j = arr.length - 1; i < arr.length && j >= 0; i++,j--) {
+            newArr[i] = arr[j];
+        }
+        return newArr;
+    }
+
+
+}
+
+
+
+
+package Test;
+
+import java.util.Random;
+
+public class Test08 {
+    public static void main(String[] args) {
+        //一个大V直播抽奖，奖品是现金红包，
+        // 分别有{2,588,888,1000,10000}五个奖金。
+        // 请使用代码模拟抽奖，打印出每个奖项，奖项的出现顺序要随机且不重复。
+        // 打印效果如下：（随机顺序，不一定是下面的顺序）
+        //888元的奖金被抽出
+        //588元的奖金被抽出
+        //10000元的奖金被抽出
+        //1000元的奖金被抽出
+        //2元的奖金被抽出
+        int arr[] = {2,588,888,1000,10000};
+        Array(arr);
+    }
+    public static void Array(int arr[]){
+        int temp = 0;
+        for (int i = 0; i < arr.length; i++) {
+            Random rad = new Random();
+            int r = rad.nextInt(arr.length);
+            temp = arr[i];
+            arr[i] = arr[r];
+            arr[r] = temp;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]+"元的奖金被抽出");
+        }
+    }
+}
+
+
+
+
+package Test;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Test09 {
+    public static void main(String[] args) {
+        //1.生成中奖号码
+        int[] arr = createNumber(); // 123456  7
+        System.out.println("=======================");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        System.out.println("=======================");
+        //2.用户输入彩票号码（红球 + 蓝球）//654321
+        int[] userInputArr = userInputNumber();
+
+        //3.判断用户的中奖情况
+        //红球 蓝球
+        int redCount = 0;
+        int blueCount = 0;
+
+        //判断红球
+        for (int i = 0; i < userInputArr.length - 1; i++) {
+            int redNumber = userInputArr[i];
+            for (int j = 0; j < arr.length - 1; j++) {
+                if (redNumber == arr[j]) {
+                    redCount++;
+                    //如果找到了，那么后面的数字就没有必要继续比较了
+                    //跳出内循环，继续判断下一个红球号码是否中奖
+                    break;
+                }
+            }
+        }
+
+        //判断蓝球
+        int blueNumber = userInputArr[userInputArr.length - 1];
+        if (blueNumber == arr[arr.length - 1]) {
+            blueCount++;
+        }
+
+        //根据红球的个数以及蓝球的个数来判断中奖情况
+        if (redCount == 6 && blueCount == 1) {
+            System.out.println("恭喜你，中奖1000万");
+        } else if (redCount == 6 && blueCount == 0) {
+            System.out.println("恭喜你，中奖500万");
+        } else if (redCount == 5 && blueCount == 1) {
+            System.out.println("恭喜你，中奖3000");
+        } else if ((redCount == 5 && blueCount == 0) || (redCount == 4 && blueCount == 1)) {
+            System.out.println("恭喜你，中奖200");
+        } else if ((redCount == 4 && blueCount == 0) || (redCount == 3 && blueCount == 1)) {
+            System.out.println("恭喜你，中奖10");
+        } else if ((redCount == 2 && blueCount == 1) || (redCount == 1 && blueCount == 1) || (redCount == 0 && blueCount == 1)) {
+            System.out.println("恭喜你，中奖5");
+        } else {
+            System.out.println("谢谢参与，谢谢惠顾");
+        }
+
+    }
+
+    public static int[] userInputNumber() {
+        //1.创建数组用于添加用户购买的彩票号码
+        //6个红球 1个蓝球 数组长度：7
+        int[] arr = new int[7];
+
+        //2.利用键盘录入让用输入
+        Scanner sc = new Scanner(System.in);
+        //让用户输入红球号码
+        for (int i = 0; i < 6; ) {
+            System.out.println("请输入第" + (i + 1) + "个红球号码");
+            int redNumber = sc.nextInt();
+            //redNumber  在1~33  唯一不重复
+            if (redNumber >= 1 && redNumber <= 33) {
+                boolean flag = contains(arr, redNumber);
+                if (!flag) {
+                    //不存在
+                    //有效的，可以添加到数组当中
+                    arr[i] = redNumber;
+                    i++;
+                } else {
+                    //存在
+                    System.out.println("当前红球号码已经存在，请重新输入");
+                }
+            } else {
+                System.out.println("当前红球号码超出范围");
+            }
+        }
+
+        //让用户输入篮球号码
+        System.out.println("请输入篮球号码");
+        //1~16
+        while (true) {
+            int blueNumber = sc.nextInt();
+            if (blueNumber >= 1 && blueNumber <= 16) {
+                arr[arr.length - 1] = blueNumber;
+                break;
+            } else {
+                System.out.println("当前篮球号码超出范围");
+            }
+        }
+        return arr;
+
+    }
+
+    public static int[] createNumber() {
+        //1.创建数组用于添加中奖号码
+        //6个红球 1个蓝球 数组长度：7
+        int[] arr = new int[7];
+
+        //2.随机生成号码并添加到数组当中
+        //红球：不能重复的  1 2 3 4 5 6
+        //蓝球：可以跟红球号码重复 5
+
+        //生成红球号码并添加到数组当中
+        Random r = new Random();
+        for (int i = 0; i < 6; ) {
+            //获取红球号码
+            int redNumber = r.nextInt(33) + 1;
+            boolean flag = contains(arr, redNumber);
+            if (!flag) {
+                //把红球号码添加到数组当中
+                arr[i] = redNumber;
+                i++;
+            }
+        }
+
+        //生成蓝球号码并添加到数组当中
+        int blueNumber = r.nextInt(16) + 1;
+        arr[arr.length - 1] = blueNumber;
+        return arr;
+    }
+
+    //用于判断数组在数组中是否存在
+    public static boolean contains(int[] arr, int number) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == number) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+
+
+
+package Test;
+
+import javax.xml.transform.Result;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Test10 {
+    public static void main(String[] args) {
+        System.out.println("*******************");
+        int createArr[] = create();
+        for (int i = 0; i < createArr.length; i++) {
+        //    System.out.print(createArr[i] + " ");
+        }
+        System.out.println();
+        System.out.println("*******************");
+        int usersArr[] = usersNumber();
+        int redCount = 0;
+        int blueCount = 0;
+        for (int i = 0; i < createArr.length - 1; i++) {
+            if (usersArr[i] == createArr[i]) {
+                redCount++;
+            }
+        }
+        int blueNumber = usersArr[usersArr.length - 1];
+        if (blueNumber == createArr[createArr.length - 1]) {
+            blueCount++;
+
+        }
+        if (redCount == 6 && blueCount == 1)
+            System.out.println("恭喜你中奖1000万");
+        else if (redCount == 6 && blueCount == 0)
+            System.out.println("恭喜你中奖500万");
+        else if (redCount == 5 && blueCount == 1  )
+            System.out.println("恭喜你中奖3000元");
+        else if (redCount == 5 && blueCount == 0||redCount == 4 && blueCount == 1  )
+            System.out.println("恭喜你中奖200元");
+        else if (redCount == 4 && blueCount == 0||redCount == 3 && blueCount == 1  )
+            System.out.println("恭喜你中奖100元");
+        else if (redCount == 2 && blueCount == 1||redCount == 1 && blueCount == 1 || redCount == 0 && blueCount == 1)
+            System.out.println("恭喜你中奖5元");
+        else System.out.println("没中奖");
+
+    }
+
+    public static int[] usersNumber() {
+        int users[] = new int[7];
+        for (int i = 0; i < users.length - 1; ) {
+            System.out.print("请输入第" + (i + 1) + "个红球号码:>");
+            int redNum = new Scanner(System.in).nextInt();
+            if (redNum >= 1 && redNum <= 33) {
+                boolean flag = contains(users, redNum);
+                if (!flag) {
+                    users[i] = redNum;
+                    i++;
+                } else System.out.println("数据已存在，请重新输入!");
+            } else System.out.println("数据超出范围，请重新输入!");
+        }
+        for (int j = users.length - 1; j < users.length; ) {
+            System.out.print("请输入蓝球号码:>");
+            int blueNum = new Scanner(System.in).nextInt();
+            if (blueNum >= 1 && blueNum <= 16) {
+                users[users.length - 1] = blueNum;
+                j++;
+            } else System.out.println("数据超出范围，请重新输入!");
+        }
+
+        return users;
+    }
+    public static boolean contains(int arr[], int num) {
+        //判断数字是否重复
+        boolean flag = true;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == num) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public static int[] create() {
+        int createArr[] = new int[7];
+        Random r = new Random();
+
+        for (int i = 0; i < createArr.length - 1; ) {
+            int radIndex = r.nextInt(33) + 1;
+            boolean flag = contains(createArr, radIndex);
+            if (!flag) {
+                createArr[i] = radIndex;
+                i++;
+            }
+        }
+        int radIndex = r.nextInt(16) + 1;
+        createArr[createArr.length - 1] = radIndex;
+        return createArr;
+    }
+}
+
+
+
+
+package Test;
+
+public class Test11 {
+    public static void main(String[] args) {
+        /*
+        二维数组静态初始化格式:
+                            数据类型[][]数组名= new 数据类型[][]{{元素1,元素2},{元素1，元素2}};
+        简化格式:
+                            数据类型[][]数组名= {{元素1,元素2}，{元素1，元素2}};
+        元素访问:
+                            数组名[索引][索引];
+        二维数组遍历:
+                            先得到一维数组，再遍历一维数组获取元素
+         */
+        //1.二维数组的静态初始化格式
+        int arr1[][] = new int[][]{{11, 22}, {33, 44}, {1, 2}, {3}};
+        int arr2[][] = {{11, 22}, {33, 44}, {1, 2}, {3}};
+        //建议这样写，把每一个一维数组，单独写成一行
+        int arr3[][] = {
+                {11, 22},
+                {33, 44, 55, 66},
+        };
+        //2.获取元素
+        //System.out.println(arr1[0]);//表示获取二维数组中的第一个一维数组的地址值
+
+        //arr3[0]:二维数组中的第一个一维数组
+        //arr3[0][0]:获取第一个一维数组中0索引的元素
+        //System.out.println(arr3[0][0]);//11
+
+
+        //3.二维数组的遍历
+        //外循环：遍历二维数组，得到里面的每一个一维数组
+        for (int i = 0; i < arr3.length; i++) {
+            //i:表示二维数组中的每一个索引
+            //arr3[i]：表示二维数组中的每一个元素（一维数组 ）
+            //内循环：遍历一维数组，得到里面的每一个元素
+            for (int j = 0; j < arr3[i].length; j++) {
+                //j：表示一维数组中的每一个索引
+                //arr3[j]：表示一维数组中的每一个元素
+                System.out.print(arr3[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+
