@@ -1,0 +1,436 @@
+package Test01;
+
+public class Phone {
+    public Phone(){}
+    private String brand;
+    private double price;
+    private String color;
+    public String getBrand(){
+        return brand;
+    }
+    public void setBrand(String brand){
+        this.brand = brand;
+    }
+    public double getPrice(){
+        return price;
+    }
+    public void setPrice(double price){
+        this.price = price;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+    public void call() {
+        System.out.println("正在使用价格为" + price + "元" + color + "色的" + brand + "手机打电话....");
+    }
+
+    public void sendMessage() {
+        System.out.println("正在使用价格为" + price + "元" + color + "色的" + brand + "手机发短信....");
+    }
+}
+
+
+
+
+package Test01;
+
+public class PhoneTest {
+    public static void main(String[] args) {
+        //定义手机类，手机有品牌(brand),价格(price)和颜色(color)三个属性，
+        // 有打电话call()和sendMessage()两个功能。
+        //请定义出手机类，类中要有空参、有参构造方法，set/get方法。
+        //定义测试类，在主方法中使用空参构造创建对象，使用set方法赋值。
+        //调用对象的两个功能，打印效果如下：
+        //正在使用价格为3998元黑色的小米手机打电话....
+        //正在使用价格为3998元黑色的小米手机发短信....
+        Phone p1 = new Phone();
+        p1.setBrand("小米");
+        p1.setPrice(3998);
+        p1.setColor("黑");
+        p1.call();
+        p1.sendMessage();
+    }
+}
+
+
+
+
+package Test02;
+
+public class girlFirend {
+    private String name;
+    private double height;
+    private double weight;
+
+    public girlFirend() {
+    }
+
+    public girlFirend(String name, double height, double weight) {
+        this.name = name;
+        this.height = height;
+        this.weight = weight;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public double getHeight(){
+        return height;
+    }
+    public void setHeight(double height){
+        this.height = height;
+    }
+    public double getWeight(){
+        return weight;
+    }
+    public void setWeight(double weight){
+        this.weight = weight;
+    }
+    public void wash(){
+        System.out.println("女朋友帮我洗衣服");
+    }
+    public void cook(){
+        System.out.println("女朋友给我做饭");
+    }
+
+    public void show(String name,double height,double weight){
+        System.out.println("我女朋友叫"+name+"，身高"+height+"厘米，"+"体重"+weight+"斤");
+    }
+}
+
+
+
+
+package Test02;
+
+public class girlFirendTest {
+    public static void main(String[] args) {
+        /*定义一个女朋友类。
+        女朋友的属性包含：姓名，身高，体重。
+        行为包含：洗衣服wash()，做饭cook()。
+        另外定义一个用于展示三个属性值的show()方法。
+        请在测试类中通过有参构造方法创建对象并赋值，
+        然后分别调用展示方法、洗衣服方法和做饭方法。
+        打印效果如下：
+        我女朋友叫凤姐,身高155.0厘米,体重130.0斤
+        女朋友帮我洗衣服
+        女朋友给我做饭*/
+        girlFirend gir = new girlFirend();
+        gir.setName("小诗诗");
+        gir.setHeight(165.8);
+        gir.setWeight(90);
+        gir.show(gir.getName(), gir.getHeight(), gir.getWeight());
+        gir.wash();
+        gir.cook();
+    }
+}
+
+
+
+
+package Test03;
+
+public class Coder {
+    private String name;
+    private int id;
+    private int salary;
+    public Coder(){}
+    public Coder(String name,int id,int salary){
+        this.name = name ;
+        this.id = id;
+        this.salary = salary;
+    }
+
+    /**
+     * 获取
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * 设置
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * 获取
+     * @return id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * 设置
+     * @param id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * 获取
+     * @return salary
+     */
+    public int getSalary() {
+        return salary;
+    }
+
+    /**
+     * 设置
+     * @param salary
+     */
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public void work(){
+        System.out.println("工号为"+id+"基本工资为"+salary+"的程序员"+
+                name+"正在努力的写着代码......");
+    }
+}
+
+
+
+package Test03;
+
+public class Manager {
+    private String name;
+    private int id;
+    private int salary;
+    private int bonus;
+    public Manager(){}
+    public Manager(String name,int id,int salary,int bonus){
+        this.name = name ;
+        this.id = id;
+        this.salary = salary;
+        this.bonus = bonus;
+    }
+
+    /**
+     * 获取
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * 设置
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * 获取
+     * @return id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * 设置
+     * @param id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * 获取
+     * @return salary
+     */
+    public int getSalary() {
+        return salary;
+    }
+
+    /**
+     * 设置
+     * @param salary
+     */
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    /**
+     * 获取
+     * @return bonus
+     */
+    public int getBonus() {
+        return bonus;
+    }
+
+    /**
+     * 设置
+     * @param bonus
+     */
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
+    }
+
+    public void work(){
+        System.out.println("工号为"+id+"基本工资为"+
+                salary+"奖金为"+bonus+"的项目经理"+
+                name+"正在努力的做着管理工作,分配任务,检查员工提交上来的代码.....");
+    }
+}
+
+
+
+
+
+package Test03;
+
+public class Test {
+
+    public static void main(String[] args) {
+        //定义项目经理类Manager。
+        // 属性：姓名name，工号id，工资salary，奖金bonus。
+        // 行为：工作work()
+        //定义程序员类Coder。
+        // 属性：姓名name，工号id，工资salary。
+        // 行为：工作work()
+        //要求：
+        //1.按照以上要求定义Manager类和Coder类,属性要私有,生成空参、有参构造，set和get方法
+        //2.定义测试类,在main方法中创建该类的对象并给属性赋值(set方法或有参构造方法)
+        //3.调用成员方法,打印格式如下:
+        //工号为123基本工资为15000奖金为6000的项目经理张三正在努力的做着管理工作,分配任务,检查员工提交上来的代码.....
+        //工号为135基本工资为10000的程序员李四正在努力的写着代码......
+        Manager manager = new Manager();
+        manager.setName("张三");
+        manager.setId(123);
+        manager.setSalary(15000);
+        manager.setBonus(6000);
+        manager.work();
+
+        Coder coder = new Coder();
+        coder.setName("李四");
+        coder.setSalary(10000);
+        coder.setId(135);
+        coder.work();
+    }
+}
+
+
+
+package Test04;
+
+public class Cat {
+    //定义猫类Cat。属性:毛的颜色color，品种breed。
+    //        行为:吃饭eat()，抓老鼠catchMouse()
+    private String color;
+    private String breed;
+    public Cat(){}
+    public Cat(String color,String breed){
+        this.color = color;
+        this.breed = breed;
+    }
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public void eat(){
+        System.out.println(color+"的"+breed+"正在吃鱼...");
+    }
+    public void catchMOuse(){
+        System.out.println(color+"的"+breed+"正在逮老鼠...");
+    }
+}
+
+
+
+package Test04;
+
+public class Dog {
+    //定义狗类Dog。属性:毛的颜色color，品种breed。
+    //        行为:吃饭()，看家lookHome()
+    private String color;
+    private String breed;
+    public Dog(){}
+    public Dog(String color,String breed){
+        this.color = color;
+        this.breed = breed;
+    }
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public void eat(){
+        System.out.println(color+"的"+breed+"正在啃骨头...");
+    }public void lookHouse(){
+        System.out.println(color+"的"+breed+"正在看家...");
+    }
+}
+
+
+
+package Test04;
+
+public class Test {
+    public static void main(String[] args) {
+        /*定义猫类Cat。属性:毛的颜色color，品种breed。
+        行为:吃饭eat()，抓老鼠catchMouse()
+        定义狗类Dog。属性:毛的颜色color，品种breed。
+        行为:吃饭()，看家lookHome()
+        要求:
+        1.按照以上要求定义Cat类和Dog类,属性要私有,生成空参、有参构造，set和get方法
+        2.定义测试类,在main方法中创建该类的对象并给属性赋值(set方法或有参构造方法)
+        3.调用成员方法,打印格式如下:
+        花色的波斯猫正在吃鱼.....
+        花色的波斯猫正在逮老鼠....
+        黑色的藏獒正在啃骨头.....
+        黑色的藏獒正在看家.....*/
+        Cat cat = new Cat();
+        cat.setColor("花色");
+        cat.setBreed("波斯猫");
+        cat.eat();
+        cat.catchMOuse();
+
+        Dog dog = new Dog();
+        dog.setColor("黑色");
+        dog.setBreed("藏獒");
+        dog.eat();
+        dog.lookHouse();
+    }
+}
