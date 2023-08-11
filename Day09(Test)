@@ -1,0 +1,491 @@
+package Test01;
+
+public class Car {
+    //汽车的属性：品牌，价格，颜色。
+    private String brand;
+    private int price;
+    private String color;
+    public Car(){
+    }
+    public Car(String brand,int price,String color){
+        this.brand = brand;
+        this.price = price;
+        this.color = color;
+    }
+
+    public String getBrand(){
+        return brand;
+    }
+    public void setBrand(String brand){
+        this.brand = brand;
+    }
+    public int getPrice(){
+        return price;
+    }
+    public void setPrice(int price){
+        this.price  = price;
+    }
+    public String getColor(){
+        return color;
+    }
+    public void setColor(String color){
+        this.color = color;
+    }
+
+}
+
+
+
+
+package Test01;
+
+import java.util.Scanner;
+
+public class CatTest {
+    public static void main(String[] args) {
+        /*定义数组存储3部汽车对象。
+	    汽车的属性：品牌，价格，颜色。
+	    创建三个汽车对象，数据通过键盘录入而来，并把数据存入到数组当中。*/
+        Car arr[] = new Car[3];
+        for (int i = 0; i < arr.length; i++) {
+            Car car = new Car();
+            System.out.println("请输入汽车的品牌");
+            String brand = new Scanner(System.in).next();
+            car.setBrand(brand);
+            System.out.println("请输入汽车的价格");
+            int price = new Scanner(System.in).nextInt();
+            car.setPrice(price);
+            System.out.println("请输入汽车的颜色");
+            String color = new Scanner(System.in).next();
+            car.setColor(color);
+            arr[i] = car;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            Car car = arr[i];
+            System.out.println("brand:"+ car.getBrand()+",price:" + car.getPrice()+",color:"+car.getColor());
+        }
+    }
+}
+
+
+
+
+package Test02;
+
+public class Phone {
+    //手机的属性：品牌，价格，颜色。
+    private String brand;
+    private int price;
+    private String color;
+
+    public Phone() {
+    }
+
+    public Phone(String brand, int price, String color) {
+        this.brand = brand;
+        this.price = price;
+        this.color = color;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+}
+
+
+
+
+package Test02;
+
+public class PhoneTest {
+    public static void main(String[] args) {
+        //定义数组存储3部手机对象。
+        //手机的属性：品牌，价格，颜色。
+        //要求，计算出三部手机的平均价格
+        Phone arr[] = new Phone[3];
+        Phone p1 = new Phone("苹果",1999,"黑");
+        Phone p2 = new Phone("小米",4999,"黑");
+        Phone p3 = new Phone("华为",3999,"黑");
+        arr[0] = p1;
+        arr[1] = p2;
+        arr[2] = p3;
+        System.out.println("平均价格"+average(arr));
+
+    }
+
+    public static int average( Phone arr[]){
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            Phone phone = arr[i];
+            sum = sum + phone.getPrice();
+        }
+        int average = sum / arr.length;
+        return average;
+    }
+}
+
+
+
+
+package Test03;
+
+public class girlFriend {
+    //女朋友的属性：姓名、年龄、性别、爱好
+    private String name;
+    private int age;
+    private String gender;
+    private String hobby;
+
+    public girlFriend() {
+    }
+
+    public girlFriend(String name, int age,String gender, String hobby) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.hobby = hobby;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getHobby() {
+        return hobby;
+    }
+
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
+}
+
+
+
+
+package Test03;
+
+import Test02.Phone;
+
+import java.util.Scanner;
+
+public class girlFriendTest {
+    public static void main(String[] args) {
+        //定义数组存储4个女朋友的对象
+        //女朋友的属性：姓名、年龄、性别、爱好
+        //要求1：计算出四个女朋友的平均年龄
+        //要求2：统计年龄比平均值低的女朋友有几个？并把她们的所有信息打印出来。
+        girlFriend arr[] = new girlFriend[4];
+        for (int i = 0; i < arr.length; i++) {
+            //创建女朋友的对象
+            girlFriend gir = new girlFriend();
+            System.out.println("请输入姓名");
+            String name = new Scanner(System.in).next();
+            gir.setName(name);
+            System.out.println("请输入年龄");
+            int age  = new Scanner(System.in).nextInt();
+            gir.setAge(age);
+            System.out.println("请输入性别");
+            String gender = new Scanner(System.in).next();
+            gir.setGender(gender);
+            System.out.println("请输入爱好");
+            String hobby = new Scanner(System.in).next();
+            gir.setHobby(hobby);
+            arr[i] = gir;
+        }
+        System.out.println("平均年龄为："+average(arr));
+        System.out.println("比平均年龄小的有"+getCount(arr,average(arr))+"个");
+
+    }
+
+    public static int average(girlFriend arr[]){
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            girlFriend gir = arr[i];
+            sum = sum + gir.getAge();
+        }
+        int average = sum / arr.length;
+        return average;
+    }
+
+    public static int getCount(girlFriend arr[],int average){
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].getAge() < average)count++;
+        }
+        return count;
+    }
+
+}
+
+
+
+
+package Test04;
+
+public class Student {
+    //学生的属性：学号，姓名，年龄
+    private int id;
+    private String name;
+    private int age;
+
+    public Student() {
+    }
+
+    public Student(int id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+
+
+
+package Test04;
+
+import java.util.Scanner;
+
+public class Test01 {
+    public static void main(String[] args) {
+        //定义数组存储3个学生对象。
+        //学生的属性：学号，姓名，年龄。
+        //要求1：添加的时候需要进行学号的唯一性判断。
+        //要求2：添加完毕之后，遍历所有学生信息。
+        Student arr[] = new Student[3];
+        Student stu1 = new Student(2201, "zhangsan", 19);
+        Student stu2 = new Student(2202, "lisi", 20);
+        Student stu3 = new Student(2203, "wangwu", 22);
+        arr[0] = stu1;
+        arr[1] = stu2;
+        arr[2] = stu3;
+        Student stu4 = new Student(2204, "zhaoliu", 21);
+        boolean flag = contains(arr, stu4.getId());
+        if (flag == true) {//不存在
+            int count = getCount(arr);
+            if (count == arr.length) {
+                //数组元素存满了,定义一个新的数组，长度count+1
+                Student newArr[] = createArr(arr, count);
+                for (int i = 0; i < newArr.length; i++) {
+                    Student stu = newArr[i];
+                    newArr[count] = stu4;
+
+                }
+                printArr(newArr);
+            } else {
+                //数组未存满
+                arr[count] = stu4;
+                printArr(arr);
+            }
+        } else {//学号存在
+            System.out.println("当前id重复，请修改id后再进行添加");
+        }
+    }
+
+    //判断唯一性
+    public static boolean contains(Student arr[], int id) {
+        for (int i = 0; i < arr.length; i++) {
+            Student stu = arr[i];
+            if (id == stu.getId()) {//学号存在
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //获取数组元素个数
+    public static int getCount(Student arr[]) {
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != null) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    //原数组元素存满，创建新的数组
+    public static Student[] createArr(Student arr[], int count) {
+        Student newArr[] = new Student[arr.length + 1];
+        for (int i = 0; i < arr.length; i++) {
+            newArr[i] = arr[i];
+        }
+        return newArr;
+    }
+
+    public static void printArr(Student arr[]) {
+        for (int i = 0; i < arr.length; i++) {
+            Student stu = arr[i];
+            if (stu != null) {
+                System.out.println("id" + stu.getId() + ",name:" + stu.getName() + ",age:" + stu.getAge());
+            }
+        }
+    }
+}
+
+
+
+
+package Test04;
+
+import java.util.Scanner;
+
+public class Test02 {
+    public static void main(String[] args) {
+        //要求3：通过id删除学生信息
+        //       如果存在，则删除，如果不存在，则提示删除失败。
+        //要求4：删除完毕之后，遍历所有学生信息。
+        Student arr[] = new Student[3];
+        Student stu1 = new Student(2201, "zhangsan", 19);
+        Student stu2 = new Student(2202, "lisi", 20);
+        Student stu3 = new Student(2203, "wangwu", 22);
+        arr[0] = stu1;
+        arr[1] = stu2;
+        arr[2] = stu3;
+        int id = new Scanner(System.in).nextInt();
+        int index = getIndex(arr, id);
+        if (index >= 0) {
+            arr[index] = null;
+            printArr(arr);
+        } else {
+            System.out.println("当前id不存在，删除失败");
+        }
+    }
+
+    public static int getIndex(Student arr[], int id) {
+        for (int i = 0; i < arr.length; i++) {
+            Student stu = arr[i];
+            if (stu != null) {
+                int sid = stu.getId();
+                if (sid == id) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public static void printArr(Student arr[]) {
+        for (int i = 0; i < arr.length; i++) {
+            Student stu = arr[i];
+            if (stu != null) {
+                System.out.println("id" + stu.getId() + ",name:" + stu.getName() + ",age:" + stu.getAge());
+            }
+        }
+    }
+}
+
+
+
+
+package Test04;
+
+import java.util.Scanner;
+
+public class Test03 {
+    public static void main(String[] args) {
+        //要求5：id为2的学生，年龄+1岁
+        Student arr[] = new Student[3];
+        Student stu1 = new Student(2201, "zhangsan", 19);
+        Student stu2 = new Student(2202, "lisi", 20);
+        Student stu3 = new Student(2203, "wangwu", 22);
+        arr[0] = stu1;
+        arr[1] = stu2;
+        arr[2] = stu3;
+        int id = new Scanner(System.in).nextInt();
+        int index = getIndex(arr, id);
+        if (index >= 0) {
+            int age = arr[index].getAge() + 1;
+            arr[index].setAge(age);
+            printArr(arr);
+        } else {
+            System.out.println("当前id不存在，修改失败");
+        }
+    }
+
+    public static int getIndex(Student arr[], int id) {
+        for (int i = 0; i < arr.length; i++) {
+            Student stu = arr[i];
+            if (stu != null) {
+                int sid = stu.getId();
+                if (sid == id) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public static void printArr(Student arr[]) {
+        for (int i = 0; i < arr.length; i++) {
+            Student stu = arr[i];
+            if (stu != null) {
+                System.out.println("id" + stu.getId() + ",name:" + stu.getName() + ",age:" + stu.getAge());
+            }
+        }
+    }
+
+}
