@@ -1,0 +1,177 @@
+package StringBuilderDemo;
+
+public class StringBuilderDemo01 {
+    public static void main(String[] args) {
+        String s = "";
+        for (int i = 0; i < 1000000; i++) {
+            s = s + "abc";
+        }
+        System.out.println(s);
+    }
+}
+
+
+
+
+package StringBuilderDemo;
+
+public class StringBuilderDemo02 {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 1000000; i++) {
+            sb.append("abc");
+        }
+
+        System.out.println(sb);
+    }
+}
+
+
+
+
+package StringBuilderDemo;
+
+public class StringBuilderDemo03 {
+    public static void main(String[] args) {
+        //1.创建对象
+        StringBuilder sb = new StringBuilder("abc");
+
+
+        //2.添加元素
+        sb.append(1);
+        sb.append(2.3);
+        sb.append(true);
+        sb.append("你好");
+        System.out.println(sb);//abc12.3true你好
+
+
+        //3.反转
+        sb = sb.reverse();
+        System.out.println(sb);//abc12.3true你好   --->    好你eurt3.21cba
+
+
+        //4.获取长度
+        int len = sb.length();
+        System.out.println(len);//13
+    }
+}
+
+
+
+package StringBuilderDemo;
+
+public class StringBuilderDemo04 {
+    public static void main(String[] args) {
+        //1.创建对象
+        StringBuilder sb = new StringBuilder();
+
+
+        //2.添加元素
+        sb.append("aaa").append("bbb").append("ccc").append("ddd");
+        /*sb.append("bbb");
+        sb.append("ccc");
+        sb.append("ddd");*/
+
+        System.out.println(sb);//aaabbbcccddd
+
+        //3.再把StringBuilder变回字符串
+        String str = sb.toString();
+        //变回字符串后可以使用
+        //str.charAt()
+        // str.length()
+        // str.equals()
+        //str.substring()
+        // ...
+        System.out.println(str);//aaabbbcccddd
+    }
+}
+
+
+
+
+package StringBuilderDemo;
+
+import java.util.Scanner;
+
+public class StringBuilderDemo05 {
+    public static void main(String[] args) {
+        //链式编程：
+        //当我们在调用一个方法的时候，不需要用变量接收他的结果，可以继续调用其他方法
+        int len = getString().substring(1).replace("A", "Q").length();
+        System.out.println(len);
+
+
+    }
+
+
+    public static String getString() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入一个字符串");
+        String str = sc.next();
+        return str;
+    }
+
+
+}
+
+
+
+
+package StringBuilderDemo;
+
+import java.util.Scanner;
+
+public class StringBuilderDemo06 {
+    //使用StringBuilder的场景
+    //1.字符串的拼接
+    //2.字符串的反转
+    public static void main(String[] args) {
+        //1.键盘录入一个字符串
+        System.out.println("请输入一个字符串");
+        String str = new Scanner(System.in).next();
+
+
+        //2.反转键盘录入的字符串
+        String result = new StringBuilder(str).reverse().toString();
+
+        //3.比较
+        if (str.equals(result)){
+            System.out.println("当前字符串是对称字符串");
+
+        }else System.out.println("当前字符串不是对称字符串");
+    }
+}
+
+
+
+
+package StringBuilderDemo;
+
+import javax.xml.transform.Result;
+
+public class StringBuilderDemo07 {
+    public static void main(String[] args) {
+        int arr[] = {1,2,3,};
+        /*String str = arrToString(arr);
+        System.out.println(str);*/
+        System.out.println(arrToString(arr));
+    }
+    public static String arrToString(int arr[]){
+        StringBuilder sb =new StringBuilder();
+        sb.append("[");
+
+        for (int i = 0; i < arr.length; i++) {
+            if (i == arr.length - 1){
+                sb.append(arr[i]);
+            }else sb.append(arr[i] + ", ");
+        }
+        sb.append("]");
+        //String result = sb.toString();
+        return sb.toString();
+    }
+}
+
+
+
+
