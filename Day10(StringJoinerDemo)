@@ -1,0 +1,43 @@
+package StringJoinerDemo;
+
+import java.util.StringJoiner;
+
+public class StringJoinerDemo01 {
+    public static void main(String[] args) {
+        //1.创建一个对象，并指定中间的间隔符号
+        StringJoiner sj = new StringJoiner("---");
+
+        //2.添加元素
+        sj.add("abc").add("bcd").add("cde");
+
+        //3.打印
+        System.out.println(sj);//abc---bcd---cde
+
+    }
+}
+
+
+
+
+package StringJoinerDemo;
+
+import java.util.StringJoiner;
+
+public class StringJoinerDemo02 {
+    public static void main(String[] args) {
+        //1.创建对象
+        StringJoiner sj = new StringJoiner(", ","[","]");
+
+        //2.添加元素
+        sj.add("aaa").add("bbb").add("ccc");
+
+        int len = sj.length();
+
+        //3.打印
+        System.out.println(sj);//[aaa, bbb, ccc]
+        System.out.println(len);//15  --- 所有字符的总个数
+
+        String str = sj.toString();
+        System.out.println(str);//[aaa, bbb, ccc]
+    }
+}
