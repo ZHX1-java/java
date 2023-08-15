@@ -1,0 +1,373 @@
+package Test;
+
+public class Test01 {
+    public static void main(String[] args) {
+
+    }
+}
+
+
+
+
+package Test;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Test02 {
+    public static void main(String[] args) {
+        //键盘输入任意字符串，打乱里面的内容
+        String str = new Scanner(System.in).next();
+        System.out.println(getStr(str));
+    }
+
+    public static String getStr(String str) {
+        char arr[] = str.toCharArray();
+        Random r = new Random();
+        char temp;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < arr.length; i++) {
+            int rand = r.nextInt(str.length());
+            temp = arr[rand];
+            arr[rand] = arr[i];
+            arr[i] = temp;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(arr[i]);
+        }
+        return sb.toString();
+    }
+}
+
+
+
+
+package Test;
+
+import java.util.Random;
+
+public class Test03 {
+    public static void main(String[] args) {
+        //生成验证码
+        //内容：可以是小写字母，也可以是大写字母，还可以是数字
+        //规则：
+        //长度为5
+        //内容中是四位字母，1位数字。
+        //其中数字只有1位，但是可以出现在任意的位置。
+
+        String str = getResult(getStr());
+        System.out.println(str);
+        //把字符串转换成字符数组，并随机打乱
+
+    }
+    public static String getStr(){
+        //定义一个数组，把 a-z 和 A-Z 存入数组
+        char arr[] = new char[52];
+        for (int i = 0; i < arr.length; i++) {
+            if (i <= 25) {
+                arr[i] = (char) ('A' + i);
+            } else arr[i] = (char) ('a' + i - 26);
+        }
+        Random r = new Random();
+        char newArr[] = new char[5];
+        for (int i = 0; i < newArr.length - 1; i++) {
+            int index = r.nextInt(52);
+            newArr[i] = arr[index];
+        }
+        char numArr[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        for (int i = 0; i < numArr.length; i++) {
+            int number = r.nextInt(9);
+            newArr[newArr.length - 1] = numArr[number];
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < newArr.length; i++) {
+            sb.append(newArr[i]);
+        }
+        //把数字语字母拼接起来
+        String str = sb.toString();
+        return str;
+    }
+    public static String getResult(String str){
+        char arr[] = str.toCharArray();
+        Random r = new Random();
+        char temp = 0;
+        String s;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < arr.length; i++) {
+            int num = r.nextInt(5);
+            temp = arr[i];
+            arr[i] = arr[num];
+            arr[num] = temp;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(arr[i]);
+        }
+        return sb.toString();
+    }
+}
+
+
+
+
+package Test;
+
+import java.util.BitSet;
+import java.util.Scanner;
+
+public class Test04 {
+    public static void main(String[] args) {
+        //请编写程序，由键盘录入一个字符串，统计字符串中英文字母和数字分别有多少个。
+        // 比如：Hello12345World中字母：10个，数字：5个。
+        String str = new Scanner(System.in).next();
+        int numberCount = 0;
+        int bigCount = 0;
+        int smallCount = 0;
+        char arr[] = str.toCharArray();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] >= '0' && arr[i] <= '9') {
+                numberCount++;
+            }
+            if (arr[i] >= 'a' && arr[i] <= 'z') {
+                smallCount++;
+            }
+            if (arr[i] >= 'A' && arr[i] <= 'Z') {
+                bigCount++;
+            }
+        }
+        //System.out.println("数字有" + getNumberCount(str)+ "个");
+        //System.out.println("大写字母有" + getbigCount(str)+ "个");
+        // System.out.println("小写字母有" + getSmallCount(str)+ "个");
+        System.out.println("数字有" + numberCount + "个");
+        System.out.println("大写字母有" + bigCount + "个");
+        System.out.println("小写字母有" + smallCount + "个");
+
+    }
+
+    /*public static int getNumberCount(String str) {
+        int numberCount = 0;
+        char arr[] = str.toCharArray();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] >= '0' && arr[i] <= '9') {
+                numberCount++;
+            }
+        }
+        return numberCount;
+    }
+
+    public static int getbigCount(String str) {
+        int bigCount = 0;
+        char arr[] = str.toCharArray();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] >= 'A' && arr[i] <= 'Z') {
+                bigCount++;
+            }
+        }
+        return bigCount;
+    }
+
+    public static int getSmallCount(String str) {
+        int smallCount = 0;
+        char arr[] = str.toCharArray();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] >= 'a' && arr[i] <= 'z') {
+                smallCount++;
+            }
+        }
+        return smallCount;
+    }*/
+}
+
+
+
+
+package Test;
+
+import java.util.Scanner;
+
+public class Test05 {
+    public static void main(String[] args) {
+        //请定义一个方法用于判断一个字符串是否是对称的字符串，
+        // 并在主方法中测试方法。
+        // 例如："abcba"、"上海自来水来自海上"均为对称字符串。
+        String str = new Scanner(System.in).next();
+        boolean flag = getResult(str);
+        if (flag) {
+            System.out.println("是对称字符");
+        }else System.out.println("不是对称字符");
+    }
+    public static boolean getResult(String str){
+        StringBuilder sb = new StringBuilder();
+        String s;
+        s = sb.append(str).reverse().toString();
+        if (s.equals(str)){
+            return true;
+        }
+        return false;
+    }
+}
+
+
+
+
+package Test;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Test06 {
+    public static void main(String[] args) {
+        //我国的居民身份证号码，由由十七位数字本体码和一位数字校验码组成。
+        // 请定义方法判断用户输入的身份证号码是否合法，并在主方法中调用方法测试结果。
+        // 规则为：号码为18位，不能以数字0开头，
+        // 前17位只可以是数字，最后一位可以是数字或者大写字母X。
+        String str = new Scanner(System.in).next();
+        boolean flag = getResult(str);
+        if (flag){
+            System.out.println("身份证正确");
+        }else System.out.println("身份证错误");
+    }
+    public static boolean getResult(String str){
+
+        //判断身份证长度是否是18位
+        if (str.length() != 18){
+            return false;
+        }
+        //判断身份证首位是不是0
+        if (str.charAt(0) == 0){
+            return false;
+        }
+        char arr[] = str.toCharArray();
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] >= '0' && arr[i] <= '9'){
+                return true;
+            }
+        }
+        if ((arr[arr.length] >= '0' && arr[arr.length] <= '9') || arr[arr.length] == 'X'){
+            return true;
+        }
+        return false;
+    }
+}
+
+
+
+
+package Test;
+
+import java.util.StringJoiner;
+
+public class Test07Case1 {
+    public static void main(String[] args) {
+        //定义一个方法，把 int 数组中的数据按照指定的格式拼接成一个字符串返回，调用该方法，并在控制台输出结果。
+        //要求：
+        //1、如果传递的参数为空，返回null
+        //2、如果传递的数组元素个数为0，返回[]
+        //3、如果数组为int[] arr = {1,2,3}; ，执行方法后的输出结果为：[1, 2, 3]
+
+        int arr[] = {1, 2, 3, 4};
+        System.out.println(getStr(arr));
+    }
+
+    public static String getStr(int arr[]) {
+        if (arr == null) {
+            return null;
+        }
+        StringJoiner sj = new StringJoiner(",", "[", "]");
+        for (int i = 0; i < arr.length; i++) {
+            sj.add(arr[i] + "");
+        }
+        return sj.toString();
+    }
+}
+
+
+
+
+package Test;
+
+public class Test07Case2 {
+    public static void main(String[] args) {
+        // 定义一个 int 类型的数组，用静态初始化完成数组元素的初始化
+        int[] arr = {1, 2, 3};
+        // 调用方法，输出结果
+        System.out.println(arrayToString(arr));
+    }
+
+    /*定义一个方法，用于把 int 数组中的数据按照指定格式拼接成一个字符串返回
+		返回值类型：String
+		参数：int[] arr
+     */
+    public static String arrayToString(int[] arr) {
+        // 健壮性判断
+        if (arr == null) {
+            return null;
+        }
+        //在方法中用 StringBuilder 按照要求进行拼接，并把结果转成 String 返回
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < arr.length; i++) {
+            // 拼接元素
+            sb.append(arr[i]);
+            // 如果不是最后一个元素，再拼接逗号和空格
+            if (i != arr.length - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+}
+
+
+
+
+package Test;
+
+public class Test08Case1 {
+    public static void main(String[] args) {
+        //在String类的API中，有如下两个方法：
+        /*查找参数字符串str在调用方法的字符串中第一次出现的索引，如果不存在，返回-1
+          public int indexOf(String str)
+          截取字符串，从索引beginIndex（包含）开始到字符串的结尾
+          public String substring(int beginIndex)
+          */
+
+        //请仔细阅读API中这两个方法的解释，完成如下需求。
+        //现有如下文本：
+        // "Java语言是面向对象的，Java语言是健壮的，Java语言是安全的，Java是高性能的，Java语言是跨平台的"。
+        // 请编写程序，统计该文本中"Java"一词出现的次数。
+        String str = "Java语言是面向对象的，Java语言是健壮的，Java语言是安全的，Java是高性能的，Java语言是跨平台的";
+        String foundStr = "Java";
+        int count = 0;
+        int index = -1;
+        while ((index = str.indexOf(foundStr)) != -1){
+            count++;
+            str = str.substring(index + foundStr.length());
+        }
+        System.out.println(count);
+
+    }
+}
+
+
+
+
+package Test;
+
+public class Test08Case2 {
+    public static void main(String[] args) {
+        String str = "Java语言是面向对象的，Java语言是健壮的，Java语言是安全的，Java是高性能的，Java语言是跨平台的";
+        String tar = "Java";
+        // 调用方法并输出
+        System.out.println(search(str, tar));
+
+    }
+
+    // 替换之后求长度差
+    public static int search(String str, String tar) {
+        String newStr = str.replace(tar, "");
+        int count = (str.length() - newStr.length()) / tar.length();
+        return count;
+
+    }
+}
