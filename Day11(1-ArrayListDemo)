@@ -1,0 +1,109 @@
+package ArrayListDemo;
+
+import java.util.ArrayList;
+
+public class ArrayListDemo01 {
+    public static void main(String[] args) {
+        //1.创建集合的对象
+        //泛型：限定集合中存储数据的类型
+        //ArrayList<String> list = new ArrayList<String>();
+        //JDK7:
+
+        //此时我们创建的是ArrayList的对象，而ArrayList是java已经写好的一个类
+        //这个类在底层做了一些处理
+        //打印对象不是地址值，而是集合中存储数据内容
+        //在展示的时候会拿[]把所有的数据进行包裹
+        ArrayList<String> list = new ArrayList<>();
+        System.out.println(list);//打印结果  []
+    }
+}
+
+
+
+
+package ArrayListDemo;
+
+import java.util.ArrayList;
+
+public class ArrayListDemo02 {
+    public static void main(String[] args) {
+        /*
+           boolean add(E e)        添加
+
+           boolean remove(E e)     删除
+           E remove(int index)
+
+           E set(int index,E e)    修改
+
+           E get(int index)        查询
+           int size()              获取长度
+        */
+
+
+        //1.创建一个集合
+        ArrayList<String> list = new ArrayList<>();
+
+
+
+        //2.添加元素
+        //boolean result = list.add("aaa");
+        //无论添加什么，都是添加成功，永远返回一个true
+        //System.out.println(result);//true   一般不管返回值
+
+        list.add("aaa");
+        list.add("bbb");
+        list.add("ccc");
+        list.add("ddd");
+        //System.out.println(list);          //[aaa, bbb, ccc, ddd]
+
+
+
+        //删除元素
+        /*boolean result =  list.remove("aaa");
+        boolean result2 = list.remove("eee");
+        System.out.println(result);             //true
+        System.out.println(result2);            //false
+        System.out.println(list);               //[bbb, ccc, ddd]*/
+
+        /*String str = list.remove(0);       //把被删除的元素返回
+        System.out.println(str);             //aaa
+        System.out.println(list);            //[bbb, ccc, ddd]
+        */
+
+
+
+        //修改元素
+        /*String str =  list.set(0,"eee");//会将覆盖该索引的元素返回
+        System.out.println(str);        //aaa
+        System.out.println(list);       //[eee, bbb, ccc, ddd]
+        */
+
+
+
+        //查询元素
+        /*String str = list.get(0);
+        System.out.println(str);        //aaa
+         */
+
+
+
+        //遍历
+        for (int i = 0; i < list.size(); i++) {
+            String str = list.get(i);
+            System.out.println(str);
+        }
+
+
+    }
+}
+
+
+
+
+package ArrayListDemo;
+
+public class ArrayListDemo03 {
+    public static void main(String[] args) {
+
+    }
+}
