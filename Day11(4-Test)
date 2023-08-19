@@ -1,0 +1,407 @@
+package Test;
+
+import java.util.ArrayList;
+
+public class Test01 {
+    public static void main(String[] args) {
+        //现有如下字符串元素：["aaa", "bbb", "aaa", "aaa", "ccc", "bbb"]，
+        //请将所有的元素按顺序存入ArrayList集合中，并遍历集合查看存储结果。
+        ArrayList<String> list = new ArrayList<>();
+        list.add("aaa");
+        list.add("bbb");
+        list.add("aaa");
+        list.add("aaa");
+        list.add("ccc");
+        list.add("bbb");
+        System.out.print("[");
+        for (int i = 0; i < list.size(); i++) {
+            if (i < list.size() - 1){
+                String str = list.get(i);
+                System.out.print(str + ",");
+            }else System.out.println(list.get(i) +"]");
+        }
+    }
+}
+
+
+
+
+
+package Test;
+
+public class Teacher {
+    //请定义教师（Teacher）类，属性包含姓名和专业名称。
+    private String name;
+    private String position;
+
+    public Teacher() {
+    }
+
+    public Teacher(String name, String position) {
+        this.name = name;
+        this.position = position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+}
+
+
+
+
+package Test;
+
+import java.util.ArrayList;
+
+public class TescherTest02 {
+    public static void main(String[] args) {
+        //请定义教师（Teacher）类，属性包含姓名和专业名称。将若干教师对象存入ArrayList集合中，并遍历集合打印教师信息，格式如下：
+        //姓名：赵老师, 专业：javase
+        //姓名：钱老师, 专业：javaee
+        //姓名：孙老师, 专业：php
+        //姓名：李老师, 专业：python
+        ArrayList<Teacher> list = new ArrayList<>();
+        Teacher t1 = new Teacher("赵老师","javase");
+        Teacher t2 = new Teacher("钱老师","javaee");
+        Teacher t3 = new Teacher("孙老师","php");
+        Teacher t4 = new Teacher("里老师","python");
+        list.add(t1);
+        list.add(t2);
+        list.add(t3);
+        list.add(t4);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("姓名：" + list.get(i).getName() + "，专业：" + list.get(i).getPosition());
+        }
+    }
+}
+
+
+
+
+package Test;
+
+public class Staff {
+    private String name;
+    private int salary;
+
+    public Staff() {
+    }
+
+    public Staff(String name, int salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+}
+
+
+
+
+package Test;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class StaffTest03 {
+    public static void main(String[] args) {
+        //有如下员工信息：
+        //姓名：张三，工资：3000
+        //姓名：李四，工资：3500
+        //姓名：王五，工资：4000
+        //姓名：赵六，工资：4500
+        //姓名：田七，工资：5000
+        //先需要将所有的员工信息都存入ArrayList集合中，并完成如下操作：
+        //1、判断是否有姓名为“王五”的员工，如果有，改名为“王小五”
+        //2、判断是否有姓名为“赵六”的员工，如果有，将其删除
+        //3、给姓名为“田七”的员工，涨500工资
+
+        ArrayList<Staff> list = new ArrayList<>();
+        /*Staff s1 = new Staff("张三", 3000);
+        Staff s2 = new Staff("李四", 3500);
+        Staff s3 = new Staff("王五", 4000);
+        Staff s4 = new Staff("赵六", 4500);
+        Staff s5 = new Staff("田七", 5000);*/
+        list.add(new Staff("张三",3000));
+        list.add(new Staff("李四", 3500));
+        list.add(new Staff("王五", 4000));
+        list.add(new Staff("赵六", 4500));
+        list.add(new Staff("田七", 5000));
+
+        for (int i = 0; i < list.size(); i++) {
+            Staff s = list.get(i);
+            if ("王五".equals(list.get(i).getName())){
+                s.setName("王小五");
+                list.set(i,s);
+            }
+            if ("赵六".equals(list.get(i).getName())){
+                // 注意，一旦删除元素，后面的元素会往前走，索引再加1就会有元素遗漏，所以删除后要--
+                list.remove(i--);
+            }
+            if ("田七".equals(list.get(i).getName())){
+                s.setSalary(s.getSalary() + 500);
+                list.set(i,s);
+            }
+        }
+        //王五  ->王小五
+        /*int index1 = contains(list, "王五");
+        if (index1 >= 0) {
+            Staff s = list.get(index1);
+            String newName = "王小五";
+            s.setName(newName);
+            list.set(index1, s);
+        } else System.out.println("该姓名不存在");
+
+        //删除赵六
+        int index2 = contains(list, "赵六");
+        if (index2 >= 0) {
+            list.remove(index2);
+        } else System.out.println("该姓名不存在");
+
+
+        //给田七的员工涨500工资
+        int index3 = contains(list, "田七");
+        if (index3 >= 0) {
+            Staff s = list.get(index3);
+            int newSallary = list.get(index3).getSalary() + 500;
+            s.setSalary(newSallary);
+            System.out.println(list.get(index3).getName() + "," + list.get(index3).getSalary());
+        }*/
+
+
+        //遍历集合
+        for (int i = 0; i < list.size(); i++) {
+            Staff staff = list.get(i);
+            System.out.println(staff.getName() + "," + staff.getSalary());
+        }
+
+    }
+
+    /*public static int contains(ArrayList<Staff> list, String name) {
+        for (int i = 0; i < list.size(); i++) {
+            if (name.equals(list.get(i).getName())) {
+                return i;
+            }
+        }
+        return -1;
+    }*/
+}
+
+
+
+
+package Test;
+
+public class Book {
+    private String id;
+    private String name;
+    private String author;
+    private double price;
+
+    public Book() {
+    }
+
+    public Book(String id, String name, String author, double price) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.price = price;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+}
+
+
+
+
+package Test;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class BookTest04 {
+    public static void main(String[] args) {
+        ArrayList<Book> list = new ArrayList<>();
+        while (true) {
+            System.out.println("-------欢迎来到图书管理系统-------");
+            System.out.println("1:添加图书");
+            System.out.println("2:根据书名查询图书");
+            System.out.println("3查询所有图书");
+            System.out.println("4:删除图书");
+            System.out.println("5:修改图书信息");
+            System.out.println("6:退出");
+            Scanner sc = new Scanner(System.in);
+
+            System.out.println("请输入你的选项");
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1 -> add(list);
+                case 2 -> search(list);
+                case 3 -> bianli(list);
+                case 4 -> delete(list);
+                case 5 -> update(list);
+                case 6 -> System.exit(0);
+                default -> System.out.println("无该选项，请重新输入");
+            }
+        }
+    }
+
+    public static void add(ArrayList<Book> list) {
+        Book b = new Book();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入要添加的图书编号");
+        String id = sc.next();
+        b.setId(id);
+
+        System.out.println("请输入要添加的图书书名");
+        String name = sc.next();
+        b.setName(name);
+
+        System.out.println("请输入要添加的图书作者");
+        String author = sc.next();
+        b.setAuthor(author);
+
+        System.out.println("请输入要添加的图书价格");
+        int price = sc.nextInt();
+        b.setPrice(price);
+
+        int index = contains(list, id);
+        if (index >= 0) {
+            System.out.println("添加失败，该编号已存在");
+        } else {
+            list.add(b);
+            System.out.println("添加成功");
+        }
+    }
+
+    public static void search(ArrayList<Book> list) {
+        System.out.println("请输入你要查找的书名");
+        String bookName = new Scanner(System.in).next();
+        int index = getIndex(list, bookName);
+        if (index >= 0) {
+            System.out.println("编号：" + list.get(index).getId() +
+                    ",书名：" + list.get(index).getName() +
+                    ",作者：" + list.get(index).getAuthor() +
+                    ",价格：" + list.get(index).getPrice());
+        } else System.out.println("该书不存在");
+    }
+
+    public static void bianli(ArrayList<Book> list) {
+        if (list.size() != 0){
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("编号：" + list.get(i).getId() +
+                    ",书名：" + list.get(i).getName() +
+                    ",作者：" + list.get(i).getAuthor() +
+                    ",价格：" + list.get(i).getPrice());
+        }
+        }else System.out.println("无任何信息");
+    }
+
+    public static void delete(ArrayList<Book> list) {
+        System.out.println("请输入要修改的图书编号");
+        String id = new Scanner(System.in).next();
+        int index = contains(list, id);
+        if (index >= 0) {
+            list.remove(index);
+            System.out.println("删除成功");
+        } else System.out.println("该书不存在");
+    }
+
+    public static void update(ArrayList<Book> list) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入要修改图书的编号");
+        String id = sc.next();
+        int index = contains(list, id);
+        if (index >= 0) {
+            Book b = list.get(index);
+            System.out.println("请输入修改后的书名");
+            String newBookName = sc.next();
+            b.setName(newBookName);
+
+            System.out.println("请输入修改后的作者");
+            String newAuthor = sc.next();
+            b.setAuthor(newAuthor);
+
+            System.out.println("请输入修改后的价格");
+            int newPrice = sc.nextInt();
+            b.setPrice(newPrice);
+
+            list.set(index, b);
+            System.out.println("修改成功");
+        } else System.out.println("该书不存在");
+    }
+
+    public static int contains(ArrayList<Book> list, String id) {
+        for (int i = 0; i < list.size(); i++) {
+            if (id.equals(list.get(i).getId())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public static int getIndex(ArrayList<Book> list,String name){
+        for (int i = 0; i < list.size(); i++) {
+            if (name.equals(list.get(i).getName())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
