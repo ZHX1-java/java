@@ -1,0 +1,609 @@
+package StudentSystem;
+
+public class User {
+    private String userName;
+    private String password;
+    private String personId;
+    private String phone;
+
+    public User() {
+    }
+
+    public User(String userName, String password, String personId, String phone) {
+        this.userName = userName;
+        this.password = password;
+        this.personId = personId;
+        this.phone = phone;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+}
+
+
+
+
+
+package StudentSystem;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(getCode());
+    }
+    public static String getCode(){
+        ArrayList<Character> list = new ArrayList<>();
+        for (int i = 0; i < 26; i++) {
+            list.add((char) ('a' + i));
+            list.add((char) ('A' + i));
+        }
+        StringBuilder sb = new StringBuilder();
+        Random r = new Random();
+        for (int i = 0; i < 4; i++) {
+            int num = r.nextInt(list.size());
+            sb.append(list.get(num));
+        }
+        int number = r.nextInt(10);
+        sb.append(number);
+        char arr[] = sb.toString().toCharArray();
+        char temp = 0;
+        String str = "";
+        int index = r.nextInt(arr.length);
+        temp = arr[index];
+        arr[index] = arr[arr.length -1];
+        arr[arr.length - 1] = temp;
+        return new String(arr);
+    }
+}
+
+
+
+
+package StudentSystem;
+
+public class Student {
+    //id name age address
+    private String id;
+    private String name;
+    private int age;
+    private String address;
+
+    public Student() {
+    }
+
+    public Student(String id, String name, int age, String address) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.address = address;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+}
+
+
+
+
+package StudentSystem;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class StudentSystem {
+    public static void startStudentSystem() {
+        ArrayList<Student> list = new ArrayList<>();
+        loop:
+        while (true) {
+            System.out.println("-----------------欢迎来到黑马学生管理系统-------------------");
+            System.out.println("1:添加学生");
+            System.out.println("2:删除学生");
+            System.out.println("3:修改学生");
+            System.out.println("4:查询学生");
+            System.out.println("5:退出");
+            System.out.println("请输入您的选择：");
+            Scanner sc = new Scanner(System.in);
+            String choose = sc.next();
+            switch (choose) {
+                case "1" -> addStudent(list);
+                case "2" -> deleteStudent(list);
+                case "3" -> updateStudent(list);
+                case "4" -> queryStudent(list);
+                case "5" -> {
+                    System.out.println("退出");
+                    //break loop;
+                    System.exit(0);//停止虚拟机运行
+                }
+                default -> System.out.println("没有这个选项");
+            }
+        }
+    }
+
+    //添加学生
+    public static void addStudent(ArrayList<Student> list) {
+        //利用空参构造先创建学生对象
+        Student s = new Student();
+
+        Scanner sc = new Scanner(System.in);
+        String id = null;
+        while (true) {
+            System.out.println("请输入学生的id");
+            id = sc.next();
+            boolean flag = contains(list, id);
+            if (flag) {
+                //表示id已经存在，需要重新录入
+                System.out.println("id已经存在，请重新录入");
+            } else {
+                //表示id不存在，表示可以使用
+                s.setId(id);
+                break;
+            }
+        }
+
+        System.out.println("请输入学生的姓名");
+        String name = sc.next();
+        s.setName(name);
+
+        System.out.println("请输入学生的年龄");
+        int age = sc.nextInt();
+        s.setAge(age);
+
+        System.out.println("请输入学生的家庭住址");
+        String address = sc.next();
+        s.setAddress(address);
+
+
+        //把学生对象添加到集合当中
+        list.add(s);
+
+        //提示一下用户
+        System.out.println("学生信息添加成功");
+    }
+
+    //删除学生
+    public static void deleteStudent(ArrayList<Student> list) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入要删除的id");
+        String id = sc.next();
+        //查询id在集合中的索引
+        int index = getIndex(list, id);
+        //对index进行判断
+        //如果-1，就表示不存在，结束方法，回到初始菜单
+        if (index >= 0) {
+            //如果大于等于0的，表示存在，直接删除
+            list.remove(index);
+            System.out.println("id为：" + id + "的学生删除成功");
+        } else {
+            System.out.println("id不存在，删除失败");
+        }
+    }
+
+    //修改学生
+    public static void updateStudent(ArrayList<Student> list) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入要修改学生的id");
+        String id = sc.next();
+
+        int index = getIndex(list, id);
+
+        if (index == -1) {
+            System.out.println("要修改的id" + id + "不存在，请重新输入");
+            return;
+        }
+
+        //当代码执行到这里，表示什么？表示当前id是存在的。
+        //获取要修改的学生对象
+        Student stu = list.get(index);
+
+        //输入其他的信息并修改
+        System.out.println("请输入要修改的学生姓名");
+        String newName = sc.next();
+        stu.setName(newName);
+
+        System.out.println("请输入要修改的学生年龄");
+        int newAge = sc.nextInt();
+        stu.setAge(newAge);
+
+        System.out.println("请输入要修改的学生家庭住址");
+        String newAddress = sc.next();
+        stu.setAddress(newAddress);
+
+        System.out.println("学生信息修改成功");
+
+
+    }
+
+
+    //查询学生
+    public static void queryStudent(ArrayList<Student> list) {
+        if (list.size() == 0) {
+            System.out.println("当前无学生信息，请添加后再查询");
+            //结束方法
+            return;
+        }
+
+        //打印表头信息
+        System.out.println("id\t\t姓名\t年龄\t家庭住址");
+        //当代码执行到这里，表示集合中是有数据的
+        for (int i = 0; i < list.size(); i++) {
+            Student stu = list.get(i);
+            System.out.println(stu.getId() + "\t" + stu.getName() + "\t" + stu.getAge() + "\t" + stu.getAddress());
+        }
+    }
+
+
+    //判断id在集合中是否存在
+    public static boolean contains(ArrayList<Student> list, String id) {
+        //循环遍历集合得到里面的每一个学生对象
+        /*for (int i = 0; i < list.size(); i++) {
+            //拿到学生对象后，获取id并进行判断
+            Student stu = list.get(i);
+            String sid = stu.getId();
+            if(sid.equals(id)){
+                //存在，true
+                return true;
+            }
+        }
+        // 不存在false
+        return false;*/
+        return getIndex(list, id) >= 0;
+    }
+
+    //通过id获取索引的方法
+    public static int getIndex(ArrayList<Student> list, String id) {
+        //遍历集合
+        for (int i = 0; i < list.size(); i++) {
+            //得到每一个学生对象
+            Student stu = list.get(i);
+            //得到每一个学生对象的id
+            String sid = stu.getId();
+            //拿着集合中的学生id跟要查询的id进行比较
+            if (sid.equals(id)) {
+                //如果一样，那么就返回索引
+                return i;
+            }
+        }
+        //当循环结束之后还没有找到，就表示不存在，返回-1.
+        return -1;
+    }
+
+}
+
+
+
+
+package StudentSystem;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) {
+        ArrayList<User> list = new ArrayList<>();
+        User u = new User("zhx", "123", "411681200407214137", "15751460762");
+        list.add(u);
+        while (true) {
+            System.out.println("欢迎来到学生管理系统");
+            System.out.println("请选择操作1登录 2注册 3忘记密码 4遍历 5遍历");
+            Scanner sc = new Scanner(System.in);
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1 -> login(list);
+                case 2 -> register(list);
+                case 3 -> forgerPassword(list);
+                case 4 -> printList(list);
+                case 5 -> {
+                    System.out.println("谢谢使用，再见");
+                    System.exit(0);
+                }
+                default -> System.out.println("无该选项，请重新选择");
+            }
+        }
+    }
+
+    public static void login(ArrayList<User> list) {
+        Scanner sc = new Scanner(System.in);
+        User user = new User();
+        System.out.println("请输入账号");
+        String userName = sc.next();
+        boolean flag1 = contains(list, userName);
+        if (flag1) {
+            System.out.println("该账号未注册，请先注册");
+            return;
+        } else {
+            user.setUserName(userName);
+        }
+        //判断验证码
+        int count = 0;
+        for (int i = 0; i < 3; i++) {
+            System.out.println("请输入密码");
+            String password = sc.next();
+            while (true) {
+                String str = getCode();
+                System.out.println(str);
+                System.out.println("请输入验证码");
+                String s = sc.next();
+                if (str.equalsIgnoreCase(s)) {
+                    int index = getIndex(list, userName);
+                    if (index >= 0) {
+                        if (list.get(index).getPassword().equals(password)) {
+                            System.out.println("登录成功");
+                            StudentSystem ss = new StudentSystem();
+                            ss.startStudentSystem();
+                            return;
+                        } else {
+                            count++;
+                            if (count < 3) {
+                                System.out.println("你还剩" + (3 - count) + "次机会");
+                            }
+                            if (count == 3) {
+                                System.out.println("你已超过三次机会，请明天再来重试");
+                            }
+                        }
+                    }
+                    break;
+                } else {
+                    System.out.println("验证码错误");
+                }
+            }
+        }
+    }
+
+    public static void register(ArrayList<User> list) {
+        Scanner sc = new Scanner(System.in);
+        User user = new User();
+        System.out.println("请输入要注册的账号");
+        String userName = sc.next();
+        boolean flag1 = contains(list, userName);
+        boolean flag2 = checkUserNameLength(list, userName);
+        boolean flag3 = cherUserNameForm(list, userName);
+        if (flag1) {
+            if (flag2) {
+                if (flag3) {
+                    user.setUserName(userName);
+                    System.out.println("请输入密码");
+                    String passWord1 = sc.next();
+                    System.out.println("请确认密码");
+                    String password2 = sc.next();
+                    if (passWord1.equals(password2)) {
+                        user.setPassword(passWord1);
+                    } else {
+                        System.out.println("两次密码不相同");
+                        return;
+                    }
+                    System.out.println("请输入身份证");
+                    String personId = sc.next();
+                    boolean flag4 = checkPersonId(list, personId);
+                    if (flag4) {
+                        user.setPersonId(personId);
+                    } else {
+                        System.out.println("身份证无效");
+                        return;
+                    }
+                    System.out.println("请输入手机号");
+                    String personNumber = sc.next();
+                    boolean flag5 = phoneNumber(list, personNumber);
+                    if (flag5) {
+                        user.setPhone(personNumber);
+                    } else {
+                        System.out.println("手机号错误");
+                        return;
+                    }
+                    list.add(user);
+                    System.out.println("注册成功");
+                } else System.out.println("格式不正确");
+            } else System.out.println("长度不正确");
+        } else System.out.println("该账号已存在");
+    }
+
+
+    public static void printList(ArrayList<User> list) {
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getUserName() + "," + list.get(i).getPassword() + "," +
+                    list.get(i).getPersonId() + "," + list.get(i).getPhone());
+        }
+    }
+
+    public static void forgerPassword(ArrayList<User> list) {
+        User user = new User();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入账号");
+        String userName = sc.next();
+        boolean flag1 = contains(list, userName);
+        if (flag1) {
+            System.out.println("该账号未注册，请注册后使用");
+        } else {
+            int index = getIndex(list, userName);
+            System.out.println("请输入身份证");
+            String personId = sc.next();
+            System.out.println("请输入手机号");
+            String phoneNumber = sc.next();
+            if (personId.equals(list.get(index).getPersonId()) && phoneNumber.equals(list.get(index).getPhone())) {
+                System.out.println("请输入修改后的密码");
+                String newPassword = sc.next();
+                user.setUserName(userName);
+                user.setPassword(newPassword);
+                user.setPhone(phoneNumber);
+                user.setPersonId(personId);
+                list.set(index,user);
+                System.out.println("修改成功");
+            } else System.out.println("账号信息不匹配，修改失败");
+        }
+    }
+
+    public static boolean contains(ArrayList<User> list, String userName) {
+        if (list.size() == 0) return true;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getUserName().toString().equals(userName)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean checkUserNameLength(ArrayList<User> list, String userName) {
+        if (userName.length() >= 3 && userName.length() <= 15) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean cherUserNameForm(ArrayList<User> list, String userName) {
+        char[] userNameArr = userName.toCharArray();
+        int numberCount = 0;
+        int count = 0;
+        for (int i = 0; i < userNameArr.length; i++) {
+            if ((userNameArr[i] >= 'a' && userNameArr[i] <= 'z') || (userNameArr[i] >= 'A' && userNameArr[i] <= 'Z') || (userNameArr[i] >= '0' && userNameArr[i] <= '9')) {
+                if ((userNameArr[i] >= 'a' && userNameArr[i] <= 'z') || (userNameArr[i] >= 'A' && userNameArr[i] <= 'Z')) {
+                    count++;
+                }
+                if (userNameArr[i] >= '0' && userNameArr[i] <= '9') {
+                    numberCount++;
+                }
+            }
+        }
+        if ((count + numberCount) == userName.length()) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkPersonId(ArrayList<User> list, String personId) {
+        if (personId.length() != 18) {
+            return false;
+        }
+        if (personId.charAt(0) == '0') {
+            return false;
+        }
+        int count = 0;
+        char arr[] = personId.toCharArray();
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] >= '0' && arr[i] <= '9') {
+                count++;
+            }
+        }
+        if (count == 17) {
+            if ((arr[arr.length - 1] >= '0' && arr[arr.length - 1] <= '9') || (arr[arr.length - 1] == 'x') || (arr[arr.length - 1] == 'X')) {
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean phoneNumber(ArrayList<User> list, String phoneNumber) {
+        if (phoneNumber.length() != 11) {
+            return false;
+        }
+        if (phoneNumber.charAt(0) == 0) {
+            return false;
+        }
+        int count = 0;
+        char arr[] = phoneNumber.toCharArray();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] >= '0' && arr[i] <= '9') {
+                count++;
+            }
+        }
+        if (count == 11) {
+            return true;
+        }
+        return false;
+    }
+
+    public static int getIndex(ArrayList<User> list, String userName) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getUserName().equals(userName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static String getCode() {
+        ArrayList<Character> list = new ArrayList<>();
+        for (int i = 0; i < 26; i++) {
+            list.add((char) ('a' + i));
+            list.add((char) ('A' + i));
+        }
+        StringBuilder sb = new StringBuilder();
+        Random r = new Random();
+        for (int i = 0; i < 4; i++) {
+            int num = r.nextInt(list.size());
+            sb.append(list.get(num));
+        }
+        int number = r.nextInt(10);
+        sb.append(number);
+        char arr[] = sb.toString().toCharArray();
+        char temp = 0;
+        String str = "";
+        int index = r.nextInt(arr.length);
+        temp = arr[index];
+        arr[index] = arr[arr.length -1];
+        arr[arr.length - 1] = temp;
+        /*for (int i = 0; i < arr.length; i++) {
+            str = str + arr[i];
+        }*/
+        return new String(arr);
+    }
+}
